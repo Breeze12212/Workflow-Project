@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 1000px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h2 {
+      color: #34495e;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+    }
+    .status-history {
+      background-color: #ecf0f1;
+      padding: 15px;
+      border-radius: 6px;
+    }
+    .approval-box {
+      border-left: 4px solid #2980b9;
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Role-Based Request Management</h1>
+    <p>Welcome, <strong>User (Requester)</strong></p>
+  </header>
+
+  <div class="container">
+    <h2>Create New Request</h2>
+    <form>
+      <label for="title">Request Title:</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="priority">Priority:</label>
+      <select id="priority" name="priority">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+      </select>
+
+      <button type="submit">Submit Request</button>
+    </form>
+
+    <h2>Status & History</h2>
+    <div class="status-history">
+     
+    </div>
+  </div>
+
+</body>
+
+
+
+  <script>
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (!user || user.role !== "requester") {
+      window.location.href = "Loginpage.html";
+    } else {
+      document.getElementById("userInfo").textContent = `${user.username}`;
+    }
+  </script>
+</body>
+</html>
